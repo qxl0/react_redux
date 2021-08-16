@@ -8,7 +8,7 @@ import { newCourse } from "../../../tools/mockData";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 
-function ManageCoursePage({
+export function ManageCoursePage({
   courses,
   authors,
   loadAuthors,
@@ -96,7 +96,7 @@ ManageCoursePage.propTypes = {
 };
 
 export function getCourseBySlug(courses, slug) {
-  return courses.find((course) => course.slug === slug);
+  return courses.find(course => course.slug === slug) || null;
 }
 
 function mapStateToProps(state, ownProps) {
@@ -108,14 +108,14 @@ function mapStateToProps(state, ownProps) {
   return {
     course,
     courses: state.courses,
-    authors: state.authors,
+    authors: state.authors
   };
 }
 
 const mapDispatchToProps = {
   loadCourses,
   loadAuthors,
-  saveCourse,
+  saveCourse
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
